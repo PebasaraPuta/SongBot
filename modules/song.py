@@ -67,7 +67,6 @@ def a(client, message):
             # if time_to_seconds(duration) >= 7000:  # duration limit
             #     m.edit("Exceeded 30mins cap")
             #     return
-
             performer = f"@SinduPotha" 
             thumb_name = f'thumb{message.id}.jpg'
             thumb = requests.get(thumbnail, allow_redirects=True)
@@ -94,7 +93,18 @@ def a(client, message):
         for i in range(len(dur_arr)-1, -1, -1):
             dur += (int(dur_arr[i]) * secmul)
             secmul *= 60
-        message.reply_audio(audio_file, caption=rep,quote=True, title=title, duration=dur, performer=performer, thumb=thumb_name)
+        message.reply_audio(audio_file, caption=rep,quote=True, title=title, duration=dur, performer=performer, thumb=thumb_name,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(BUTTON1, url=CHANNEL)
+                 ],[
+                    InlineKeyboardButton(OWNER, url=f"https://telegram.dog/{Config.OWNER}")
+            ]
+          ]
+        ),
+        reply_to_message_id=message.id
+    )
         m.delete()
     except Exception as e:
         m.edit('**An Internal error occured; Contact @Prabha_sha 🤷‍♂️**')
