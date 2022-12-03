@@ -1,0 +1,9 @@
+aiohttp
+youtube_dl
+yt-dlp
+requests
+ffmpeg
+TgCrypto
+Pillow
+Pyrogram
+youtube-search
