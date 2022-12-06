@@ -44,7 +44,18 @@ async def start(client, message):
 def a(client, message):
     query=message.text
     print(query)
-    m = message.reply(f'<i><b>Processing ⦁⦁⦁ 🚀</b></i>')
+    m = message.reply(f'<i><b>Processing ⦁⦁⦁ 🚀</b></i>'),
+    reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(BUTTON1, url=CHANNEL)
+                 ],[
+                    InlineKeyboardButton(OWNER, url=f"https://telegram.dog/{Config.OWNER}")
+            ]
+          ]
+        ),
+        reply_to_message_id=message.id
+    )
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = []
