@@ -44,12 +44,11 @@ async def start(client, message):
 def a(client, message):
     query=message.text
     print(query)
-    m = message.reply(f'<i><b>Processing ⦁⦁⦁ 🚀</b></i>'),
-    reply_markup=InlineKeyboardMarkup(
+    m = message.reply(
+  (f'<i><b>Processing ⦁⦁⦁ 🚀</b></i>'),
+  reply_markup=InlineKeyboardMarkup(
+             [
             [
-                [
-                    InlineKeyboardButton(BUTTON1, url=CHANNEL)
-                 ],[
                     InlineKeyboardButton(OWNER, url=f"https://telegram.dog/{Config.OWNER}")
             ]
           ]
@@ -85,15 +84,43 @@ def a(client, message):
 
         except Exception as e:
             print(e)
-            m.edit('**එහෙම සිංදුවක් නෑනෙ මහත්තයෝ 🥹 ආයෙමත් Try කරල බලන්න. 😌**')
+            m.edit(
+              ('**එහෙම සිංදුවක් නෑනෙ මහත්තයෝ 🥹 ආයෙමත් Try කරල බලන්න. 😌**'),
+              reply_markup=InlineKeyboardMarkup(
+             [
+            [
+                    InlineKeyboardButton(OWNER, url=f"https://telegram.dog/{Config.OWNER}")
+            ]
+          ]
+        ),
+        reply_to_message_id=message.id
+    )            
             return
     except Exception as e:
         m.edit(
-            "**එහෙම සිංදුවක් නෑනෙ මහත්තයෝ 🥹 ආයෙමත් Try කරල බලන්න. 😌**"
-        )
+          ("**එහෙම සිංදුවක් නෑනෙ මහත්තයෝ 🥹 ආයෙමත් Try කරල බලන්න. 😌**"),
+            reply_markup=InlineKeyboardMarkup(
+             [
+            [
+                    InlineKeyboardButton(OWNER, url=f"https://telegram.dog/{Config.OWNER}")
+            ]
+          ]
+        ),
+        reply_to_message_id=message.id
+    )      
         print(str(e))
         return
-    m.edit('<i><b>Uploading ⦁⦁⦁ 🚀</b></i>')
+    m.edit(
+      ('<i><b>Uploading ⦁⦁⦁ 🚀</b></i>'),
+    reply_markup=InlineKeyboardMarkup(
+             [
+            [
+                    InlineKeyboardButton(OWNER, url=f"https://telegram.dog/{Config.OWNER}")
+            ]
+          ]
+        ),
+    )
+  
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
@@ -105,12 +132,10 @@ def a(client, message):
             dur += (int(dur_arr[i]) * secmul)
             secmul *= 60
         message.reply_audio(audio_file, caption=rep,quote=True, title=title, duration=dur, performer=performer, thumb=thumb_name,
-        reply_markup=InlineKeyboardMarkup(
+          reply_markup=InlineKeyboardMarkup(
+             [
             [
-                [
                     InlineKeyboardButton(BUTTON1, url=CHANNEL)
-                 ],[
-                    InlineKeyboardButton(OWNER, url=f"https://telegram.dog/{Config.OWNER}")
             ]
           ]
         ),
@@ -118,7 +143,14 @@ def a(client, message):
     )
         m.delete()
     except Exception as e:
-        m.edit('**An Internal error occured; Contact @Prabha_sha 🤷‍♂️**')
+        m.edit(
+          ('**An Internal error occured; Contact @Prabha_sha 🤷‍♂️**'),
+reply_markup=InlineKeyboardMarkup(
+            [
+                    InlineKeyboardButton(OWNER, url=f"https://telegram.dog/{Config.OWNER}")
+            ]
+        ),
+    )          
         print(e)
     try:
         os.remove(audio_file)
